@@ -21,12 +21,14 @@ body {
 
 header {
     width: 100%;
-    background: linear-gradient(
-        135deg,
-        #050505,
-        #111111,
-        #050505
-    );
+
+    background:
+        linear-gradient(
+            135deg,
+            #050505,
+            #111111,
+            #050505
+        );
 
     border-bottom: 2px solid #d4af37;
 
@@ -37,24 +39,23 @@ header {
     z-index: 10;
 }
 
-
-/* detalhe dourado */
-
 header::after {
     content: "";
+
     display: block;
 
     width: 100%;
     height: 2px;
 
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #d4af37,
-        #f5d76e,
-        #d4af37,
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37,
+            #f5d76e,
+            #d4af37,
+            transparent
+        );
 }
 
 
@@ -64,6 +65,7 @@ header::after {
 
 main {
     width: 100%;
+
     min-height: 80vh;
 
     padding-top: 60px;
@@ -84,17 +86,23 @@ main {
 ========================================= */
 
 .agendamento {
+
     max-width: 800px;
 
     margin: 0 auto;
 
     padding: 45px;
 
-    background: linear-gradient(
-        145deg,
-        #171717,
-        #0d0d0d
-    );
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0d0d0d
+        );
 
     border: 1px solid #333333;
 
@@ -105,6 +113,69 @@ main {
     box-shadow:
         0 15px 50px rgba(0, 0, 0, 0.7),
         0 0 30px rgba(212, 175, 55, 0.06);
+
+    animation:
+        aparecerFormulario 0.8s ease-out;
+}
+
+
+/* =========================================
+   LINHA DE LUZ DO FORMULÁRIO
+========================================= */
+
+.agendamento::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #f5d76e,
+            #d4af37,
+            transparent
+        );
+
+    animation:
+        linhaPassando 4s linear infinite;
+}
+
+
+/* =========================================
+   EFEITO DE LUZ INTERNA
+========================================= */
+
+.agendamento::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    top: -150px;
+    right: -150px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212, 175, 55, 0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation:
+        luzFlutuante 5s ease-in-out infinite;
 }
 
 
@@ -113,6 +184,11 @@ main {
 ========================================= */
 
 .agendamento h1 {
+
+    position: relative;
+
+    display: inline-block;
+
     color: #d4af37;
 
     font-size: 2.5rem;
@@ -122,13 +198,87 @@ main {
     letter-spacing: 1px;
 
     margin-bottom: 15px;
+
+    cursor: default;
+
+    transition:
+        transform 0.5s ease,
+        text-shadow 0.5s ease;
 }
 
 
+/* =========================================
+   BRILHO DO TÍTULO
+========================================= */
+
+.agendamento h1:hover {
+
+    transform:
+        scale(1.04)
+        translateY(-2px);
+
+    animation:
+        brilhoTitulo 2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   LUZ PASSANDO NO TÍTULO
+========================================= */
+
+.agendamento h1::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+
+    bottom: -5px;
+
+    width: 70%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #f5d76e,
+            transparent
+        );
+
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
+}
+
+.agendamento h1:hover::after {
+
+    opacity: 1;
+
+    animation:
+        luzTitulo 2s linear infinite;
+}
+
+
+/* =========================================
+   SUBTÍTULO
+========================================= */
+
 .agendamento p {
+
     color: #bdbdbd !important;
 
     font-size: 1rem;
+
+    transition:
+        color 0.3s ease;
+}
+
+.agendamento p:hover {
+
+    color: #eeeeee !important;
 }
 
 
@@ -137,11 +287,16 @@ main {
 ========================================= */
 
 .agendamento .form-label {
+
     color: #f5f5f5;
 
     font-weight: 600;
 
     margin-bottom: 8px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
 }
 
 
@@ -151,6 +306,7 @@ main {
 
 .agendamento .form-control,
 .agendamento .form-select {
+
     background-color: #202020;
 
     color: #ffffff;
@@ -161,18 +317,35 @@ main {
 
     padding: 12px 14px;
 
-    transition: all 0.3s ease;
+    transition:
+        all 0.35s ease;
 }
 
 
-/* Placeholder */
+/* =========================================
+   HOVER INPUT
+========================================= */
 
-.agendamento .form-control::placeholder {
-    color: #777777;
+.agendamento .form-control:hover,
+.agendamento .form-select:hover {
+
+    border-color:
+        rgba(212, 175, 55, 0.55);
+
+    background-color: #242424;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.25);
 }
 
 
-/* Foco */
+/* =========================================
+   FOCO INPUT
+========================================= */
 
 .agendamento .form-control:focus,
 .agendamento .form-select:focus {
@@ -183,8 +356,35 @@ main {
 
     border-color: #d4af37;
 
+    outline: none;
+
+    transform:
+        translateY(-2px);
+
     box-shadow:
-        0 0 0 0.2rem rgba(212, 175, 55, 0.15);
+        0 0 0 0.15rem
+        rgba(212, 175, 55, 0.12),
+
+        0 0 18px
+        rgba(212, 175, 55, 0.15);
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.agendamento .form-control::placeholder {
+
+    color: #777777;
+
+    transition:
+        color 0.3s ease;
+}
+
+.agendamento .form-control:focus::placeholder {
+
+    color: #999999;
 }
 
 
@@ -193,7 +393,10 @@ main {
 ========================================= */
 
 .agendamento .form-select {
+
     color: #dddddd;
+
+    cursor: pointer;
 }
 
 
@@ -201,9 +404,23 @@ main {
    DATA E HORÁRIO
 ========================================= */
 
-input[type="date"],
-input[type="time"] {
+.agendamento input[type="date"],
+.agendamento input[type="time"] {
+
     color-scheme: dark;
+
+    cursor: pointer;
+}
+
+.agendamento input[type="date"]:focus,
+.agendamento input[type="time"]:focus {
+
+    box-shadow:
+        0 0 0 0.15rem
+        rgba(212, 175, 55, 0.12),
+
+        0 0 20px
+        rgba(212, 175, 55, 0.18);
 }
 
 
@@ -212,6 +429,7 @@ input[type="time"] {
 ========================================= */
 
 .agendamento textarea {
+
     resize: vertical;
 
     min-height: 120px;
@@ -228,17 +446,22 @@ input[type="time"] {
 
     padding: 14px 20px;
 
-    border: none;
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #d4af37;
 
     border-radius: 8px;
 
-    background: linear-gradient(
-        135deg,
-        #d4af37,
-        #b9932e
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #111111,
+            #1c1c1c
+        );
 
-    color: #080808;
+    color: #d4af37;
 
     font-size: 1rem;
 
@@ -246,24 +469,202 @@ input[type="time"] {
 
     letter-spacing: 0.5px;
 
-    transition: all 0.3s ease;
+    cursor: pointer;
+
+    transition:
+        all 0.35s ease;
 }
 
 
+/* =========================================
+   LUZ PASSANDO NO BOTÃO
+========================================= */
+
+.btn-estetick::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.35),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+}
+
+
+/* =========================================
+   HOVER BOTÃO
+========================================= */
+
 .btn-estetick:hover {
 
-    background: linear-gradient(
-        135deg,
-        #f1d267,
-        #d4af37
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #f1d267,
+            #d4af37
+        );
 
     color: #000000;
 
-    transform: translateY(-2px);
+    border-color: #f5d76e;
+
+    transform:
+        translateY(-4px);
 
     box-shadow:
-        0 8px 20px rgba(212, 175, 55, 0.25);
+        0 10px 25px
+        rgba(212, 175, 55, 0.3),
+
+        0 0 25px
+        rgba(212, 175, 55, 0.15);
+}
+
+.btn-estetick:hover::before {
+
+    animation:
+        luzBotao 0.8s ease;
+}
+
+
+/* =========================================
+   CLIQUE
+========================================= */
+
+.btn-estetick:active {
+
+    transform:
+        translateY(-1px)
+        scale(0.98);
+
+    box-shadow:
+        0 4px 10px
+        rgba(212, 175, 55, 0.2);
+}
+
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+
+@keyframes aparecerFormulario {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes linhaPassando {
+
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+
+@keyframes luzFlutuante {
+
+    0% {
+        transform:
+            translate(0, 0);
+    }
+
+    50% {
+        transform:
+            translate(-50px, 50px);
+    }
+
+    100% {
+        transform:
+            translate(0, 0);
+    }
+}
+
+
+@keyframes brilhoTitulo {
+
+    0% {
+
+        text-shadow:
+            0 0 3px
+            rgba(212, 175, 55, 0.2);
+    }
+
+    50% {
+
+        text-shadow:
+            0 0 8px
+            rgba(212, 175, 55, 0.7),
+
+            0 0 20px
+            rgba(212, 175, 55, 0.6),
+
+            0 0 35px
+            rgba(212, 175, 55, 0.35);
+    }
+
+    100% {
+
+        text-shadow:
+            0 0 3px
+            rgba(212, 175, 55, 0.2);
+    }
+}
+
+
+@keyframes luzTitulo {
+
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 130%;
+    }
+}
+
+
+@keyframes luzBotao {
+
+    0% {
+        left: -120%;
+    }
+
+    100% {
+        left: 150%;
+    }
 }
 
 
@@ -275,12 +676,13 @@ footer {
 
     width: 100%;
 
-    background: linear-gradient(
-        135deg,
-        #030303,
-        #111111,
-        #030303
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #030303,
+            #111111,
+            #030303
+        );
 
     color: #ffffff;
 
@@ -291,23 +693,22 @@ footer {
     text-align: center;
 
     box-shadow:
-        0 -5px 20px rgba(0, 0, 0, 0.6);
+        0 -5px 20px
+        rgba(0, 0, 0, 0.6);
 }
 
 
-/* Texto do footer */
-
 footer p {
+
     color: #999999;
 
     margin: 5px 0;
 }
 
 
-/* Títulos do footer */
-
 footer h3,
 footer h4 {
+
     color: #d4af37;
 
     font-weight: bold;
@@ -321,7 +722,9 @@ footer h4 {
 @media (max-width: 768px) {
 
     main {
+
         padding-top: 35px;
+
         padding-bottom: 50px;
     }
 
@@ -335,9 +738,9 @@ footer h4 {
     }
 
     .agendamento h1 {
+
         font-size: 2rem;
     }
-
 }
 
 
@@ -351,15 +754,17 @@ footer h4 {
     }
 
     .agendamento h1 {
+
         font-size: 1.7rem;
     }
 
     .agendamento p {
+
         font-size: 0.9rem;
     }
 
     .btn-estetick {
+
         padding: 12px;
     }
-
 }
